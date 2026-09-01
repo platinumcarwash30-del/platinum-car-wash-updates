@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Platinum Car Wash - Ocena usluge</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#07111f;color:#fff;min-height:100vh;padding:22px}.wrap{max-width:560px;margin:auto}.logo{text-align:center;margin:14px 0 28px}.logo h1{margin:0;color:#52a8ff;letter-spacing:2px}.logo p{margin:6px 0;color:#a9bad0}.card{background:#101e31;border:1px solid #25415f;border-radius:18px;padding:20px;box-shadow:0 12px 35px #0007}.row{padding:15px 0;border-bottom:1px solid #26394f}.row:last-of-type{border:0}.label{font-weight:700;margin-bottom:9px}.stars{display:flex;gap:8px}.star{font-size:34px;cursor:pointer;color:#526173;user-select:none}.star.on{color:#ffc83d}.plate{background:#0b1727;border-radius:12px;padding:11px 14px;margin-bottom:8px;text-align:center;font-weight:700}.comment{width:100%;min-height:90px;border-radius:12px;border:1px solid #35506d;background:#091522;color:#fff;padding:12px;font-size:16px;resize:vertical}.btn{width:100%;margin-top:18px;padding:15px;border:0;border-radius:12px;background:#1685ef;color:white;font-weight:800;font-size:17px;cursor:pointer}.btn:disabled{opacity:.5}.msg{text-align:center;padding:25px 8px;line-height:1.5}.small{color:#9fb0c5;font-size:13px;text-align:center;margin-top:14px}
+</style>
+</head>
+<body><div class="wrap">
+<div class="logo"><h1>PLATINUM CAR WASH</h1><p>ÄŒistoÄ‡a koja se pamti</p></div>
+<div class="card" id="app"><div class="msg">UÄitavanje...</div></div>
+</div>
+<script>
+const API='https://ruhxyodqhgfkwvwlxaxf.supabase.co/rest/v1/rpc/';
+const KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1aHh5b2RxaGdma3d2d2x4YXhmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc5NTM1NjMsImV4cCI6MjEwMzUyOTU2M30.IYWYQVH8MlYw_ooDIYShyuXOoiXbpT0Es04ZKFHUZuU';
+const token=new URLSearchParams(location.search).get('t')||'';
+const headers={'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'};
+const labels=[['quality','Zadovoljstvo kvalitetom pranja'],['service','Zadovoljstvo uslugom'],['communication','Zadovoljstvo komunikacijom'],['value_for_money','Odnos cena-kvalitet'],['worker_rating','Ocena pera\u010Da']];
+const scores={};
+async function rpc(name,body){const r=await fetch(API+name,{method:'POST',headers,body:JSON.stringify(body)});let x=null;try{x=await r.json()}catch{}if(!r.ok)throw new Error(x?.message||'GreÅ¡ka');return x}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function draw(info){
+ if(info.submitted){app.innerHTML='<div class="msg"><h2>Hvala! â­</h2><p>Ocena za ovu posetu je veÄ‡ poslata.</p></div>';return}
+ let rows=labels.map(([k,l])=>`<div class="row"><div class="label">${l}</div><div class="stars" datak="${k}">${[1,2,3,4,5].map(n=>`<span class="star" data-n="${n}">â˜…</span>`).join('')}</div></div>`).join('');
+ app.innerHTML=`${info.plate?`<div class="plate">Vozilo: ${esc(info.plate)}</div>`:'w'}${rows}<div class="row"><div class="label">Komentar (opciono)</div><textarea id="comment" class="comment" maxlength="500" placeholder="Napkï¿½ite komentar..."></textarea></div><button id="send" class="btn">POÅ AJJI OCENU</button><div class="small">Hvala Å¡to nam pomaÅ¾ete da budemo joÅ¡ bolji.</div>`;
+ document.querySelectorAll('.star').forEach(s=>s.onclick=()=>{let box=s.parentElement,k=box.dataset.k,n=+s.dataset.n;scores[k]=n;box.querySelectorAll('.star').forEach(x=>x.classList.toggle('on',+x.dataset.n<=n))});
+ send.onclick=submit;
+}
+async function submit(){
+ if(labels.some(([k])=>!scores[k])){alert('Molimo ocenite svih 5 stavki.');return}
+ send.disabled=true;send.textContent='SLANJE...';
+ try{await rpc('pcw_api_rating_submit',{p_token:token,p_quality:scores.quality,p_service:scores.service,p_communication:scores.communication,p_value_for_money:scores.value_for_money,p_worker_rating:scores.worker_rating,p_comment:comment.value});app.innerHTML='<div class="msg"><h2>Hvala! â­</h2><p>VaÅ¡a ocena je uspeÅ¡no poslata.</p></div>'}
+ catch(e){alert(e.message);send.disabled=false;send.textContent='POÅ AJJI OCENU'}
+}
+(async()=>{if(!token){app.innerHTML='<div class="msg">Link za ocenjivanje nije vaÅ¾eÄ‡i.</div>';return}try{draw(await rpc('pcw_api_rating_open',{p_token:token}))}catch(e){app.innerHTML='<div class="msg">Link za ocenjivanje nije vaÅ¾eÄ‡i ili je istekao.</div>'}})();
+</script></body></html>

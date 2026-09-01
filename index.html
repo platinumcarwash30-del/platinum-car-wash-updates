@@ -8,8 +8,8 @@
 </style>
 </head>
 <body><div class="wrap">
-<div class="logo"><h1>PLATINUM CAR WASH</h1><p>ÄŒistoÄ‡a koja se pamti</p></div>
-<div class="card" id="app"><div class="msg">UÄitavanje...</div></div>
+<div class="logo"><h1>PLATINUM CAR WASH</h1><p>Čistoća koja se pamti</p></div>
+<div class="card" id="app"><div class="msg">Učitavanje...</div></div>
 </div>
 <script>
 const API='https://ruhxyodqhgfkwvwlxaxf.supabase.co/rest/v1/rpc/';
@@ -18,20 +18,20 @@ const token=new URLSearchParams(location.search).get('t')||'';
 const headers={'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'};
 const labels=[['quality','Zadovoljstvo kvalitetom pranja'],['service','Zadovoljstvo uslugom'],['communication','Zadovoljstvo komunikacijom'],['value_for_money','Odnos cena-kvalitet'],['worker_rating','Ocena pera\u010Da']];
 const scores={};
-async function rpc(name,body){const r=await fetch(API+name,{method:'POST',headers,body:JSON.stringify(body)});let x=null;try{x=await r.json()}catch{}if(!r.ok)throw new Error(x?.message||'GreÅ¡ka');return x}
+async function rpc(name,body){const r=await fetch(API+name,{method:'POST',headers,body:JSON.stringify(body)});let x=null;try{x=await r.json()}catch{}if(!r.ok)throw new Error(x?.message||'Greška');return x}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function draw(info){
- if(info.submitted){app.innerHTML='<div class="msg"><h2>Hvala! â­</h2><p>Ocena za ovu posetu je veÄ‡ poslata.</p></div>';return}
- let rows=labels.map(([k,l])=>`<div class="row"><div class="label">${l}</div><div class="stars" datak="${k}">${[1,2,3,4,5].map(n=>`<span class="star" data-n="${n}">â˜…</span>`).join('')}</div></div>`).join('');
- app.innerHTML=`${info.plate?`<div class="plate">Vozilo: ${esc(info.plate)}</div>`:'w'}${rows}<div class="row"><div class="label">Komentar (opciono)</div><textarea id="comment" class="comment" maxlength="500" placeholder="Napkï¿½ite komentar..."></textarea></div><button id="send" class="btn">POÅ AJJI OCENU</button><div class="small">Hvala Å¡to nam pomaÅ¾ete da budemo joÅ¡ bolji.</div>`;
+ if(info.submitted){app.innerHTML='<div class="msg"><h2>Hvala! \u2B50</h2><p>Ocena za ovu posetu je već poslata.</p></div>';return}
+ let rows=labels.map(([k,l])=>`<div class="row"><div class="label">${l}</div><div class="stars" data-k="${k}">${[1,2,3,4,5].map(n=>`<span class="star" data-n="${n}">\u2605</span>`).join('')}</div></div>`).join('');
+ app.innerHTML=`${info.plate?`<div class="plate">Vozilo: ${esc(info.plate)}</div>`:'w'}${rows}<div class="row"><div class="label">Komentar (opciono)</div><textarea id="comment" class="comment" maxlength="500" placeholder="Napišite komentar..."></textarea></div><button id="send" class="btn">POSALJI OCENU</button><div class="small">Hvala što nam pomažete da budemo još bolji.</div>`;
  document.querySelectorAll('.star').forEach(s=>s.onclick=()=>{let box=s.parentElement,k=box.dataset.k,n=+s.dataset.n;scores[k]=n;box.querySelectorAll('.star').forEach(x=>x.classList.toggle('on',+x.dataset.n<=n))});
  send.onclick=submit;
 }
 async function submit(){
  if(labels.some(([k])=>!scores[k])){alert('Molimo ocenite svih 5 stavki.');return}
  send.disabled=true;send.textContent='SLANJE...';
- try{await rpc('pcw_api_rating_submit',{p_token:token,p_quality:scores.quality,p_service:scores.service,p_communication:scores.communication,p_value_for_money:scores.value_for_money,p_worker_rating:scores.worker_rating,p_comment:comment.value});app.innerHTML='<div class="msg"><h2>Hvala! â­</h2><p>VaÅ¡a ocena je uspeÅ¡no poslata.</p></div>'}
- catch(e){alert(e.message);send.disabled=false;send.textContent='POÅ AJJI OCENU'}
+ try{await rpc('pcw_api_rating_submit',{p_token:token,p_quality:scores.quality,p_service:scores.service,p_communication:scores.communication,p_value_for_money:scores.value_for_money,p_worker_rating:scores.worker_rating,p_comment:comment.value});app.innerHTML='<div class="msg"><h2>Hvala! \u2B50</h2><p>Vaša ocena je uspesno poslata.</p></div>'}
+ catch(e){alert(e.message);send.disabled=false;send.textContent='POSALJI OCENU'}
 }
-(async()=>{if(!token){app.innerHTML='<div class="msg">Link za ocenjivanje nije vaÅ¾eÄ‡i.</div>';return}try{draw(await rpc('pcw_api_rating_open',{p_token:token}))}catch(e){app.innerHTML='<div class="msg">Link za ocenjivanje nije vaÅ¾eÄ‡i ili je istekao.</div>'}})();
+(async()=>{if(!token){app.innerHTML='<div class="msg">Link za ocenjivanje nije važeći.</div>';return}try{draw(await rpc('pcw_api_rating_open',{p_token:token}))}catch(e){app.innerHTML='<div class="msg">Link za ocenjivanje nije važeći ili je istekao.</div>'}})();
 </script></body></html>

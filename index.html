@@ -21,7 +21,7 @@ const scores={};
 async function rpc(name,body){const r=await fetch(API+name,{method:'POST',headers,body:JSON.stringify(body)});let x=null;try{x=await r.json()}catch{}if(!r.ok)throw new Error(x?.message||'Greška');return x}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function draw(info){
- if(info.submitted){app.innerHTML='<div class="msg"><h2>Hvala! \u2B50</h2><p>Ocena za ovu posetu je već poslata.</p></div>';return}
+ if(info.submitted){app.innerHTML='<div class="msg"><h2>Hvala! \u2B50</h2><p>Ocena za ovu posetu je već poslata.</p><a href="https://g.page/r/CdO2gnBhNVsAEBM/review" target="_blank" rel="noopener noreferrer" style="display:block;margin-top:18px;padding:15px;border-radius:12px;background:#fff;color:#172033;text-decoration:none;font-weight:800;font-size:17px;text-align:center">⭐ OCENITE NAS I NA GOOGLE-U</a></div>';return}
  let rows=labels.map(([k,l])=>`<div class="row"><div class="label">${l}</div><div class="stars" data-k="${k}">${[1,2,3,4,5].map(n=>`<span class="star" data-n="${n}">\u2605</span>`).join('')}</div></div>`).join('');
  app.innerHTML=`${info.plate?`<div class="plate">Vozilo: ${esc(info.plate)}</div>`:''}${rows}<div class="row"><div class="label">Komentar (opciono)</div><textarea id="comment" class="comment" maxlength="500" placeholder="Napišite komentar..."></textarea></div><button id="send" class="btn">POSALJI OCENU</button><div class="small">Hvala što nam pomažete da budemo još bolji.</div>`;
  document.querySelectorAll('.star').forEach(s=>s.onclick=()=>{let box=s.parentElement,k=box.dataset.k,n=+s.dataset.n;scores[k]=n;box.querySelectorAll('.star').forEach(x=>x.classList.toggle('on',+x.dataset.n<=n))});
@@ -30,7 +30,7 @@ function draw(info){
 async function submit(){
  if(labels.some(([k])=>!scores[k])){alert('Molimo ocenite svih 5 stavki.');return}
  send.disabled=true;send.textContent='SLANJE...';
- try{await rpc('pcw_api_rating_submit',{p_token:token,p_quality:scores.quality,p_service:scores.service,p_communication:scores.communication,p_value_for_money:scores.value_for_money,p_worker_rating:scores.worker_rating,p_comment:comment.value});app.innerHTML='<div class="msg"><h2>Hvala! \u2B50</h2><p>Vaša ocena je uspesno poslata.</p></div>'}
+ try{await rpc('pcw_api_rating_submit',{p_token:token,p_quality:scores.quality,p_service:scores.service,p_communication:scores.communication,p_value_for_money:scores.value_for_money,p_worker_rating:scores.worker_rating,p_comment:comment.value});app.innerHTML='<div class="msg"><h2>Hvala! \u2B50</h2><p>Vaša ocena je uspesno poslata.</p><a href="https://g.page/r/CdO2gnBhNVsAEBM/review" target="_blank" rel="noopener noreferrer" style="display:block;margin-top:18px;padding:15px;border-radius:12px;background:#fff;color:#172033;text-decoration:none;font-weight:800;font-size:17px;text-align:center">⭐ OCENITE NAS I NA GOOGLE-U</a></div>'}
  catch(e){alert(e.message);send.disabled=false;send.textContent='POSALJI OCENU'}
 }
 (async()=>{if(!token){app.innerHTML='<div class="msg">Link za ocenjivanje nije važeći.</div>';return}try{draw(await rpc('pcw_api_rating_open',{p_token:token}))}catch(e){app.innerHTML='<div class="msg">Link za ocenjivanje nije važeći ili je istekao.</div>'}})();

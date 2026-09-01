@@ -23,7 +23,7 @@ function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&l
 function draw(info){
  if(info.submitted){app.innerHTML='<div class="msg"><h2>Hvala! \u2B50</h2><p>Ocena za ovu posetu je već poslata.</p></div>';return}
  let rows=labels.map(([k,l])=>`<div class="row"><div class="label">${l}</div><div class="stars" data-k="${k}">${[1,2,3,4,5].map(n=>`<span class="star" data-n="${n}">\u2605</span>`).join('')}</div></div>`).join('');
- app.innerHTML=`${info.plate?`<div class="plate">Vozilo: ${esc(info.plate)}</div>`:'w'}${rows}<div class="row"><div class="label">Komentar (opciono)</div><textarea id="comment" class="comment" maxlength="500" placeholder="Napišite komentar..."></textarea></div><button id="send" class="btn">POSALJI OCENU</button><div class="small">Hvala što nam pomažete da budemo još bolji.</div>`;
+ app.innerHTML=`${info.plate?`<div class="plate">Vozilo: ${esc(info.plate)}</div>`:''}${rows}<div class="row"><div class="label">Komentar (opciono)</div><textarea id="comment" class="comment" maxlength="500" placeholder="Napišite komentar..."></textarea></div><button id="send" class="btn">POSALJI OCENU</button><div class="small">Hvala što nam pomažete da budemo još bolji.</div>`;
  document.querySelectorAll('.star').forEach(s=>s.onclick=()=>{let box=s.parentElement,k=box.dataset.k,n=+s.dataset.n;scores[k]=n;box.querySelectorAll('.star').forEach(x=>x.classList.toggle('on',+x.dataset.n<=n))});
  send.onclick=submit;
 }

@@ -15,7 +15,7 @@
 .platinum-field,.platinum-choice,.platinum-action,.extra-choice,.time-slot{padding:14px 12px;cursor:pointer;text-align:center}
 .date-button{display:flex;align-items:center;justify-content:space-between;text-align:left;padding:15px 16px}
 .field-arrow{font-size:1.55rem;line-height:1;opacity:.7}
-.native-date-picker{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
+.date-button{position:relative;overflow:hidden}.native-date-picker{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;opacity:0!important;cursor:pointer!important;pointer-events:auto!important;-webkit-appearance:none!important;z-index:10!important}
 .choice-grid{display:grid;gap:9px}
 .time-slots,.category-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 .wash-grid{grid-template-columns:repeat(2,minmax(0,1fr))}

@@ -1,0 +1,921 @@
+﻿/* PLATINUM INNER PAGES */
+.platinum-inner{
+--pt:#d9dde2;
+--pt2:#8d959e;
+--pt3:#f7f8fa;
+--dark:#020304;
+--panel:rgba(8,10,12,.88);
+--line:rgba(210,216,223,.20);
+margin:0;
+min-height:100vh;
+color:#f7f8fa;
+background:
+radial-gradient(circle at 50% 0%,#242a30 0,#0d1115 25%,#050607 55%,#020304 100%);
+}
+
+.platinum-inner:before{
+content:"";
+position:fixed;
+inset:0;
+z-index:-1;
+pointer-events:none;
+background:
+linear-gradient(120deg,transparent 0 35%,rgba(255,255,255,.025) 50%,transparent 65%),
+radial-gradient(circle at 20% 20%,rgba(74,157,207,.08),transparent 28%);
+}
+
+/* HEADER */
+.platinum-inner .top{
+height:76px;
+padding:10px 28px;
+background:rgba(2,3,4,.93);
+border-bottom:1px solid rgba(220,225,230,.22);
+box-shadow:0 8px 35px rgba(0,0,0,.45);
+backdrop-filter:blur(18px);
+}
+
+.platinum-inner .brand img{
+border-radius:50%;
+box-shadow:0 0 22px rgba(255,255,255,.12);
+}
+
+.platinum-inner .brand span{
+color:#eef1f4;
+letter-spacing:1.5px;
+}
+
+.platinum-inner .brand b{
+color:#aeb5bc;
+}
+
+.platinum-inner .menu a{
+position:relative;
+color:#d7dbe0;
+font-size:12px;
+font-weight:700;
+letter-spacing:.7px;
+text-decoration:none;
+transition:.2s ease;
+}
+
+.platinum-inner .menu a:hover{
+color:#fff;
+text-shadow:0 0 12px rgba(255,255,255,.35);
+}
+
+.platinum-inner .menu a:after{
+content:"";
+position:absolute;
+left:0;
+right:100%;
+bottom:-8px;
+height:2px;
+background:linear-gradient(90deg,#8ed9ff,#e6ebef);
+transition:.25s ease;
+}
+
+.platinum-inner .menu a:hover:after{
+right:0;
+}
+
+/* PAGE CONTENT */
+.platinum-inner main{
+position:relative;
+max-width:1180px;
+margin:0 auto;
+padding:52px 22px 80px;
+}
+
+.platinum-inner h1{
+margin:0 0 12px;
+text-align:center;
+font-size:clamp(40px,6vw,74px);
+line-height:.95;
+letter-spacing:-2px;
+font-weight:900;
+background:linear-gradient(180deg,#fff 5%,#c8cdd2 48%,#777f88 100%);
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 10px 30px rgba(0,0,0,.7);
+}
+
+.platinum-inner h2{
+color:#eef1f4;
+font-size:clamp(24px,3vw,36px);
+letter-spacing:-.5px;
+}
+
+.platinum-inner h3{
+color:#e4e8ec;
+}
+
+.platinum-inner p{
+color:#aeb5bd;
+line-height:1.65;
+}
+
+/* CARDS / BOXES */
+.platinum-inner .card,
+.platinum-inner .box,
+.platinum-inner .panel,
+.platinum-inner section > div:not(.actions):not(.menu){
+border-color:var(--line);
+}
+
+.platinum-inner .card{
+position:relative;
+overflow:hidden;
+background:
+linear-gradient(145deg,rgba(22,25,29,.94),rgba(5,6,7,.96));
+border:1px solid var(--line);
+border-radius:18px;
+box-shadow:
+0 20px 60px rgba(0,0,0,.40),
+inset 0 1px rgba(255,255,255,.05);
+transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;
+}
+
+.platinum-inner .card:hover{
+transform:translateY(-4px);
+border-color:rgba(220,226,232,.42);
+box-shadow:
+0 25px 70px rgba(0,0,0,.55),
+0 0 30px rgba(104,189,234,.06);
+}
+
+.platinum-inner .card:before{
+content:"";
+position:absolute;
+left:0;
+top:0;
+right:0;
+height:1px;
+background:linear-gradient(90deg,transparent,#e9edf1,transparent);
+opacity:.5;
+}
+
+/* PRICE EMPHASIS */
+.cenovnik-page strong,
+.cenovnik-page .price,
+.cenovnik-page .cena{
+color:#fff;
+font-weight:850;
+}
+
+.cenovnik-page table{
+width:100%;
+border-collapse:separate;
+border-spacing:0;
+overflow:hidden;
+border:1px solid var(--line);
+border-radius:16px;
+background:rgba(5,7,9,.84);
+box-shadow:0 18px 45px rgba(0,0,0,.35);
+}
+
+.cenovnik-page th{
+background:linear-gradient(180deg,#23282e,#111418);
+color:#f2f4f6;
+font-size:12px;
+letter-spacing:.7px;
+text-transform:uppercase;
+}
+
+.cenovnik-page th,
+.cenovnik-page td{
+padding:16px 18px;
+border-bottom:1px solid rgba(215,220,225,.12);
+}
+
+.cenovnik-page tr:last-child td{
+border-bottom:0;
+}
+
+.cenovnik-page tbody tr{
+transition:.18s ease;
+}
+
+.cenovnik-page tbody tr:hover{
+background:rgba(255,255,255,.035);
+}
+
+/* BUTTONS */
+.platinum-inner .btn{
+border:1px solid rgba(220,225,230,.32);
+background:linear-gradient(180deg,#171a1e,#080a0c);
+color:#f4f6f7;
+border-radius:10px;
+font-weight:800;
+letter-spacing:.4px;
+box-shadow:0 8px 24px rgba(0,0,0,.35);
+transition:.2s ease;
+}
+
+.platinum-inner .btn:hover{
+transform:translateY(-2px);
+border-color:#dfe3e7;
+box-shadow:0 12px 30px rgba(0,0,0,.5);
+}
+
+.platinum-inner .btn.primary{
+background:linear-gradient(135deg,#dfe3e7,#8e969e);
+color:#050607;
+border-color:#edf0f2;
+}
+
+/* FOOTER */
+.platinum-inner .foot{
+background:#020304;
+border-top:1px solid rgba(215,220,225,.16);
+color:#8f969e;
+}
+
+/* MOBILE */
+@media(max-width:759px){
+.platinum-inner .top{height:68px;padding:8px 14px}
+.platinum-inner main{padding:34px 14px 55px}
+.platinum-inner h1{font-size:42px}
+.platinum-inner .card{border-radius:14px}
+.cenovnik-page th,.cenovnik-page td{padding:13px 10px}
+}
+
+/* ===== DODATNE USLUGE - FINAL RENDER MATCH ===== */
+
+.platinum-services{
+max-width:1540px !important;
+margin:0 auto !important;
+padding:28px 28px 40px !important;
+background:
+radial-gradient(circle at 50% 20%,rgba(20,87,125,.18),transparent 35%),
+linear-gradient(180deg,#030608 0%,#05090c 50%,#020304 100%) !important;
+}
+
+.platinum-services .services-intro{
+text-align:center !important;
+max-width:1050px !important;
+margin:0 auto 18px !important;
+}
+
+.platinum-services .services-intro h2{
+margin:0 !important;
+font-size:clamp(46px,5vw,76px) !important;
+line-height:.92 !important;
+font-weight:950 !important;
+letter-spacing:-2px !important;
+background:linear-gradient(180deg,#fff 5%,#d5d9dd 48%,#858d95 100%) !important;
+-webkit-background-clip:text !important;
+background-clip:text !important;
+-webkit-text-fill-color:transparent !important;
+}
+
+.platinum-services .services-intro h2 span{
+background:linear-gradient(180deg,#86d9ff,#159fe8 65%,#0875b4) !important;
+-webkit-background-clip:text !important;
+background-clip:text !important;
+-webkit-text-fill-color:transparent !important;
+filter:drop-shadow(0 0 12px rgba(30,175,245,.25));
+}
+
+.platinum-services .services-line{
+width:560px !important;
+max-width:75% !important;
+height:2px !important;
+margin:17px auto 18px !important;
+background:linear-gradient(90deg,transparent,#1eaff5 25%,#dbe9f1 50%,#1eaff5 75%,transparent) !important;
+box-shadow:0 0 13px rgba(30,175,245,.8) !important;
+}
+
+.platinum-services .services-intro p{
+margin:0 !important;
+font-size:16px !important;
+line-height:1.45 !important;
+color:#d6dce1 !important;
+}
+
+.platinum-services .services-intro p b{
+color:#37baff !important;
+}
+
+/* PET KARTICA KAO NA RENDERU */
+
+.platinum-services .service-cards{
+width:100% !important;
+display:grid !important;
+grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+gap:12px !important;
+margin:18px auto 0 !important;
+align-items:stretch !important;
+}
+
+.platinum-services .service-card{
+min-width:0 !important;
+overflow:hidden !important;
+display:flex !important;
+flex-direction:column !important;
+margin:0 !important;
+padding:0 !important;
+border:1px solid rgba(195,207,216,.48) !important;
+border-radius:17px !important;
+background:linear-gradient(180deg,#11171c 0%,#070b0e 50%,#020304 100%) !important;
+box-shadow:
+0 18px 45px rgba(0,0,0,.65),
+inset 0 1px rgba(255,255,255,.08),
+0 0 10px rgba(25,157,226,.06) !important;
+transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease !important;
+}
+
+.platinum-services .service-card:hover{
+transform:translateY(-5px) !important;
+border-color:#39baff !important;
+box-shadow:
+0 24px 55px rgba(0,0,0,.75),
+0 0 22px rgba(30,175,245,.16) !important;
+}
+
+/* MALE / KONTROLISANE SLIKE */
+
+.platinum-services .service-image{
+position:relative !important;
+width:100% !important;
+height:275px !important;
+min-height:275px !important;
+overflow:hidden !important;
+margin:0 !important;
+border-radius:16px 16px 0 0 !important;
+background:#050709 !important;
+}
+
+.platinum-services .service-image img{
+display:block !important;
+width:100% !important;
+height:100% !important;
+max-width:none !important;
+object-fit:cover !important;
+object-position:center !important;
+margin:0 !important;
+transition:transform .35s ease !important;
+}
+
+.platinum-services .service-image:after{
+content:"" !important;
+position:absolute !important;
+inset:55% 0 0 !important;
+background:linear-gradient(transparent,#070b0e) !important;
+pointer-events:none !important;
+}
+
+.platinum-services .service-card:hover .service-image img{
+transform:scale(1.035) !important;
+}
+
+/* TEKST UNUTAR KVADRATA */
+
+.platinum-services .service-content{
+flex:1 !important;
+min-height:210px !important;
+padding:18px 16px 22px !important;
+margin:0 !important;
+display:flex !important;
+flex-direction:column !important;
+align-items:center !important;
+text-align:center !important;
+background:linear-gradient(180deg,rgba(8,13,17,.96),#020304) !important;
+}
+
+.platinum-services .service-content h3{
+margin:0 !important;
+font-size:17px !important;
+line-height:1.18 !important;
+font-weight:900 !important;
+letter-spacing:-.2px !important;
+color:#f1f3f5 !important;
+text-align:center !important;
+}
+
+.platinum-services .service-content h3:after{
+content:"" !important;
+display:block !important;
+width:30px !important;
+height:2px !important;
+margin:11px auto 0 !important;
+background:#1eaff5 !important;
+box-shadow:0 0 8px rgba(30,175,245,.8) !important;
+}
+
+.platinum-services .service-content p{
+margin:10px 0 0 !important;
+max-width:235px !important;
+font-size:13px !important;
+line-height:1.48 !important;
+font-weight:400 !important;
+color:#b9c1c8 !important;
+text-align:center !important;
+}
+
+/* CTA KAO NA RENDERU */
+
+.platinum-services .services-cta{
+width:calc(100% - 120px) !important;
+max-width:1360px !important;
+box-sizing:border-box !important;
+margin:15px auto 0 !important;
+padding:14px 28px !important;
+min-height:82px !important;
+display:flex !important;
+align-items:center !important;
+justify-content:space-between !important;
+gap:30px !important;
+border:1px solid rgba(63,184,247,.7) !important;
+border-radius:20px !important;
+background:
+linear-gradient(110deg,rgba(4,11,16,.98),rgba(7,16,22,.94),rgba(2,5,7,.98)) !important;
+box-shadow:
+0 0 20px rgba(30,175,245,.13),
+inset 0 0 25px rgba(255,255,255,.025) !important;
+}
+
+.platinum-services .services-cta > div{
+display:flex !important;
+flex-direction:column !important;
+gap:4px !important;
+}
+
+.platinum-services .services-cta strong{
+font-size:19px !important;
+line-height:1.15 !important;
+color:#e7ebee !important;
+}
+
+.platinum-services .services-cta span{
+font-size:13px !important;
+color:#a9bac5 !important;
+}
+
+.platinum-services .services-cta a{
+min-width:300px !important;
+padding:9px 20px !important;
+text-align:center !important;
+text-decoration:none !important;
+border:1px solid rgba(54,155,210,.55) !important;
+border-radius:11px !important;
+background:rgba(3,8,12,.92) !important;
+}
+
+.platinum-services .services-cta a b{
+display:block !important;
+font-size:24px !important;
+line-height:1.05 !important;
+color:#f4f6f7 !important;
+}
+
+.platinum-services .services-cta a small{
+display:block !important;
+margin-top:4px !important;
+font-size:11px !important;
+font-weight:800 !important;
+color:#29b5ff !important;
+}
+
+/* TABLET */
+
+@media(max-width:1100px){
+.platinum-services .service-cards{
+grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+}
+.platinum-services .services-cta{
+width:100% !important;
+}
+}
+
+/* TELEFON */
+
+@media(max-width:700px){
+.platinum-services{
+padding:26px 12px 40px !important;
+}
+.platinum-services .services-intro h2{
+font-size:40px !important;
+}
+.platinum-services .service-cards{
+grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+gap:10px !important;
+}
+.platinum-services .service-image{
+height:190px !important;
+min-height:190px !important;
+}
+.platinum-services .service-content{
+min-height:190px !important;
+padding:15px 10px 18px !important;
+}
+.platinum-services .service-content h3{
+font-size:14px !important;
+}
+.platinum-services .service-content p{
+font-size:12px !important;
+}
+.platinum-services .services-cta{
+width:100% !important;
+flex-direction:column !important;
+text-align:center !important;
+padding:18px !important;
+}
+.platinum-services .services-cta a{
+width:100% !important;
+min-width:0 !important;
+box-sizing:border-box !important;
+}
+}
+
+@media(max-width:470px){
+.platinum-services .service-cards{
+grid-template-columns:1fr !important;
+}
+.platinum-services .service-image{
+height:235px !important;
+min-height:235px !important;
+}
+}
+
+
+/* ===== CENOVNIK FINAL - ODOBRENI RENDER ===== */
+
+.cenovnik-final{
+max-width:1540px !important;
+margin:0 auto !important;
+padding:0 28px 32px !important;
+background:
+radial-gradient(circle at 25% 22%,rgba(18,90,130,.12),transparent 30%),
+radial-gradient(circle at 75% 22%,rgba(18,90,130,.10),transparent 30%),
+linear-gradient(180deg,#030608,#020405) !important;
+}
+
+/* AUTOMOBILI */
+
+.cenovnik-final .cenovnik-cars{
+position:relative !important;
+display:grid !important;
+grid-template-columns:1fr 1fr !important;
+width:100% !important;
+height:390px !important;
+overflow:hidden !important;
+margin:0 !important;
+background:#030608 !important;
+}
+
+.cenovnik-final .cenovnik-car{
+position:relative !important;
+width:100% !important;
+height:100% !important;
+background-position:center bottom !important;
+background-repeat:no-repeat !important;
+background-size:cover !important;
+}
+
+.cenovnik-final .cenovnik-standard-car{
+background-image:
+linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.03)),
+url("cenovnik-standard-car.jpg") !important;
+}
+
+.cenovnik-final .cenovnik-platinum-car{
+background-image:
+linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.03)),
+url("cenovnik-platinum-car.jpg") !important;
+}
+
+.cenovnik-final .cenovnik-divider{
+position:absolute !important;
+z-index:5 !important;
+left:50% !important;
+top:-30px !important;
+width:2px !important;
+height:470px !important;
+background:#22b5ff !important;
+box-shadow:0 0 8px #22b5ff,0 0 22px rgba(34,181,255,.8) !important;
+transform:rotate(14deg) !important;
+transform-origin:center !important;
+}
+
+/* DVE CENOVNE KARTICE */
+
+.cenovnik-final .cenovnik-packages{
+display:grid !important;
+grid-template-columns:1fr 1fr !important;
+gap:30px !important;
+width:100% !important;
+margin:0 auto !important;
+padding:0 !important;
+}
+
+.cenovnik-final .cenovnik-package{
+position:relative !important;
+box-sizing:border-box !important;
+min-width:0 !important;
+margin:0 !important;
+padding:25px 34px 27px !important;
+border:1px solid #38baff !important;
+border-radius:22px !important;
+background:
+linear-gradient(135deg,rgba(8,17,24,.98),rgba(2,5,8,.99)) !important;
+box-shadow:
+0 18px 50px rgba(0,0,0,.65),
+inset 0 1px rgba(255,255,255,.07),
+0 0 18px rgba(30,175,245,.08) !important;
+}
+
+.cenovnik-final .cenovnik-package h3{
+margin:0 0 8px !important;
+font-size:31px !important;
+line-height:1.05 !important;
+font-weight:900 !important;
+letter-spacing:-.6px !important;
+color:#f3f5f7 !important;
+text-shadow:0 2px 3px #000 !important;
+}
+
+.cenovnik-final .platinum-package h3{
+color:#f4f6f8 !important;
+}
+
+.cenovnik-final .cenovnik-package p{
+min-height:62px !important;
+margin:0 0 18px !important;
+padding-bottom:18px !important;
+border-bottom:1px solid rgba(34,181,255,.75) !important;
+font-size:15px !important;
+line-height:1.45 !important;
+color:#e0e4e7 !important;
+}
+
+/* CENE */
+
+.cenovnik-final .cen-price{
+display:flex !important;
+align-items:center !important;
+width:100% !important;
+gap:12px !important;
+margin:0 !important;
+padding:8px 0 !important;
+}
+
+.cenovnik-final .cen-price span{
+font-size:21px !important;
+line-height:1 !important;
+font-weight:850 !important;
+white-space:nowrap !important;
+color:#e8ebed !important;
+}
+
+.cenovnik-final .cen-price:after{
+content:"" !important;
+order:2 !important;
+flex:1 !important;
+height:2px !important;
+min-width:25px !important;
+background-image:radial-gradient(circle,#bfc8ce 1px,transparent 1.4px) !important;
+background-size:9px 2px !important;
+background-repeat:repeat-x !important;
+opacity:.9 !important;
+}
+
+.cenovnik-final .cen-price b{
+order:3 !important;
+white-space:nowrap !important;
+font-size:31px !important;
+line-height:1 !important;
+font-weight:900 !important;
+color:#27adf5 !important;
+text-shadow:0 0 12px rgba(39,173,245,.16) !important;
+}
+
+.cenovnik-final .cen-price b small{
+font-size:15px !important;
+font-weight:700 !important;
+color:#45baff !important;
+}
+
+/* DONJI PANEL */
+
+.cenovnik-final .cenovnik-bottom{
+box-sizing:border-box !important;
+display:grid !important;
+grid-template-columns:1fr 1fr 1.15fr !important;
+align-items:center !important;
+width:calc(100% - 20px) !important;
+margin:18px auto 0 !important;
+padding:18px 26px !important;
+border:1px solid #3abaff !important;
+border-radius:22px !important;
+background:
+linear-gradient(110deg,rgba(4,11,16,.99),rgba(6,15,21,.96),rgba(2,5,8,.99)) !important;
+box-shadow:
+0 0 22px rgba(30,175,245,.18),
+inset 0 0 25px rgba(255,255,255,.025) !important;
+}
+
+.cenovnik-final .cenovnik-bottom > div{
+display:flex !important;
+flex-direction:column !important;
+justify-content:center !important;
+min-height:62px !important;
+padding:0 26px !important;
+border-right:1px solid rgba(46,180,246,.55) !important;
+}
+
+.cenovnik-final .cenovnik-bottom > div:first-child{
+padding-left:10px !important;
+}
+
+.cenovnik-final .cenovnik-bottom strong{
+margin-bottom:6px !important;
+font-size:16px !important;
+line-height:1.15 !important;
+font-weight:900 !important;
+color:#eef1f3 !important;
+}
+
+.cenovnik-final .cenovnik-bottom span{
+font-size:14px !important;
+line-height:1.35 !important;
+color:#c4ced5 !important;
+}
+
+.cenovnik-final .cenovnik-bottom a{
+display:flex !important;
+flex-direction:column !important;
+align-items:center !important;
+justify-content:center !important;
+text-decoration:none !important;
+padding-left:22px !important;
+}
+
+.cenovnik-final .cenovnik-bottom a b{
+font-size:32px !important;
+line-height:1 !important;
+font-weight:950 !important;
+letter-spacing:1px !important;
+color:#f1f3f5 !important;
+text-shadow:0 2px 4px #000 !important;
+}
+
+.cenovnik-final .cenovnik-bottom a span{
+margin-top:6px !important;
+font-size:15px !important;
+font-weight:900 !important;
+color:#25b3ff !important;
+}
+
+/* TABLET */
+
+@media(max-width:1000px){
+.cenovnik-final .cenovnik-cars{
+height:310px !important;
+}
+.cenovnik-final .cenovnik-packages{
+gap:15px !important;
+}
+.cenovnik-final .cenovnik-package{
+padding:22px !important;
+}
+.cenovnik-final .cenovnik-package h3{
+font-size:25px !important;
+}
+.cenovnik-final .cen-price span{
+font-size:17px !important;
+}
+.cenovnik-final .cen-price b{
+font-size:25px !important;
+}
+.cenovnik-final .cenovnik-bottom{
+grid-template-columns:1fr 1fr !important;
+}
+.cenovnik-final .cenovnik-bottom a{
+grid-column:1/-1 !important;
+padding:18px 0 2px !important;
+border-top:1px solid rgba(46,180,246,.35) !important;
+}
+}
+
+/* MOBILNI */
+
+@media(max-width:700px){
+.cenovnik-final{
+padding:0 12px 30px !important;
+}
+.cenovnik-final .cenovnik-cars{
+grid-template-columns:1fr !important;
+height:auto !important;
+}
+.cenovnik-final .cenovnik-car{
+height:270px !important;
+}
+.cenovnik-final .cenovnik-divider{
+display:none !important;
+}
+.cenovnik-final .cenovnik-packages{
+grid-template-columns:1fr !important;
+gap:12px !important;
+}
+.cenovnik-final .cenovnik-package{
+padding:21px 18px !important;
+}
+.cenovnik-final .cenovnik-package p{
+min-height:0 !important;
+}
+.cenovnik-final .cen-price span{
+font-size:16px !important;
+}
+.cenovnik-final .cen-price b{
+font-size:24px !important;
+}
+.cenovnik-final .cenovnik-bottom{
+width:100% !important;
+grid-template-columns:1fr !important;
+padding:15px !important;
+text-align:center !important;
+}
+.cenovnik-final .cenovnik-bottom > div{
+padding:14px 5px !important;
+border-right:0 !important;
+border-bottom:1px solid rgba(46,180,246,.35) !important;
+}
+.cenovnik-final .cenovnik-bottom a{
+grid-column:auto !important;
+padding:18px 0 4px !important;
+border-top:0 !important;
+}
+.cenovnik-final .cenovnik-bottom a b{
+font-size:28px !important;
+}
+}
+
+
+
+
+/* ===== CENOVNIK - FINAL RENDER ONLY ===== */
+.cenovnik-page .cenovnik-render-only{
+width:100% !important;
+max-width:1536px !important;
+margin:0 auto !important;
+padding:0 !important;
+display:block !important;
+overflow:hidden !important;
+background:#020405 !important;
+}
+
+.cenovnik-page .cenovnik-render-only img{
+display:block !important;
+width:100% !important;
+height:auto !important;
+max-width:none !important;
+margin:0 !important;
+padding:0 !important;
+object-fit:contain !important;
+}
+
+@media(max-width:700px){
+.cenovnik-page .cenovnik-render-only{
+width:100% !important;
+padding:0 !important;
+}
+.cenovnik-page .cenovnik-render-only img{
+width:100% !important;
+height:auto !important;
+}
+}
+
+
+/* ===== CENOVNIK HEADER = HOME HEADER ===== */
+.cenovnik-page .top{
+height:76px !important;
+padding:10px clamp(16px,4vw,54px) !important;
+}
+.cenovnik-page .brand{
+gap:11px !important;
+letter-spacing:.5px !important;
+}
+.cenovnik-page .brand img{
+width:54px !important;
+height:54px !important;
+}
+.cenovnik-page .brand b{
+letter-spacing:1.4px !important;
+}
+.cenovnik-page .menu{
+gap:clamp(13px,1.55vw,24px) !important;
+}
+.cenovnik-page .menu a{
+font-size:12px !important;
+letter-spacing:.65px !important;
+}
+@media(max-width:760px){
+.cenovnik-page .top{
+height:70px !important;
+}
+.cenovnik-page .menu{
+top:70px !important;
+}
+}
+

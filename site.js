@@ -1,0 +1,1 @@
+const b=document.querySelector('.hamb'),m=document.querySelector('.menu');if(b)b.onclick=()=>m.classList.toggle('open');
